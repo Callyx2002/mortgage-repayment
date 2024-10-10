@@ -47,6 +47,12 @@ function focusChoices() {
       }
       radioButtons[i].checked = true;
       choices[i].classList.add("checked");
+      if (radioButtons[i].checked) {
+        if (fieldset.lastElementChild.tagName.toLowerCase() === "p") {
+          // alert("test");
+          fieldset.removeChild(fieldset.lastElementChild);
+        }
+      }
     });
   }
 }
@@ -92,9 +98,9 @@ function removeColor(index) {
   indicator[index].classList.remove("redBg");
   inputText[index].classList.remove("invalid-input");
 }
+
 focusChoices();
 focusText();
-// focusInput();
 
 form.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -136,7 +142,7 @@ form.addEventListener("submit", (event) => {
   for (const elem of inputText) {
     values.push(parseFloat(elem.value));
   }
-  // alert(values);
+
   calcMortage(...values);
   first.classList.add("hidden");
   second.classList.add("shown");
