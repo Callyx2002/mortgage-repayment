@@ -27,9 +27,13 @@ function validatorText(element) {
 
 //focus using indicators
 function focusText() {
-  for (let i = 0; i < indicator.length; i++) {
-    indicator[i].addEventListener("click", () => {
+  for (let i = 0; i < smallerField.length; i++) {
+    smallerField[i].addEventListener("click", () => {
       inputText[i].focus();
+      if (inputField[i].lastElementChild.tagName.toLowerCase() === "p") {
+        inputField[i].removeChild(inputField[i].lastElementChild);
+        removeColor(i);
+      }
     });
   }
 }
@@ -90,6 +94,7 @@ function removeColor(index) {
 }
 focusChoices();
 focusText();
+// focusInput();
 
 form.addEventListener("submit", (event) => {
   event.preventDefault();
